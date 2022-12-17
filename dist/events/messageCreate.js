@@ -17,13 +17,16 @@ const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, fu
     const server = client.guilds.cache.get(db_1.botDB.serverId);
     // console.log(msg.channelId)
     if (msg.channelId == '942882096693772328') {
-        msg.react('1036152764700577792');
+        msg.react('1035717696622428170');
         msg.react('938641123348475914');
     }
     if (server === null || server === void 0 ? void 0 : server.channels.cache.filter(f => f.parentId == '889585373523615764' && f.name.includes('🌟》')).some(s => s.id == msg.channelId)) {
         msg.react('1039665999403819068');
         msg.react('1035719304219471913');
         msg.react('938639678603681842');
+    }
+    if (msg.channelId == '1022914793511850084' && msg.content.startsWith('=birthday date')) {
+        msg.reply({ content: '**Aprieta a "celebrar en este servidor" para que nos notifique <a:slowdance:1053308466552373318>**' });
     }
 });
 exports.messageCreateEvent = messageCreateEvent;

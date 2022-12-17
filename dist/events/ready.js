@@ -10,12 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readyEvent = void 0;
+const discord_js_1 = require("discord.js");
 const db_1 = require("../db");
 const interaction_1 = require("./interaction");
 const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     console.log('Estoy listo ' + ((_a = client.user) === null || _a === void 0 ? void 0 : _a.username));
     const server = client.guilds.cache.get(db_1.botDB.serverId);
+    const channelLog = client.channels.cache.get('1053686859840102431');
+    const ReadyEb = new discord_js_1.EmbedBuilder()
+        .setTitle('I am ready')
+        .setDescription('Connected again')
+        .setColor('Random');
+    if ((channelLog === null || channelLog === void 0 ? void 0 : channelLog.type) == discord_js_1.ChannelType.GuildText)
+        channelLog.send({ embeds: [ReadyEb] });
     // console.log(server?.emojis.cache.filter(f=> f.animated).map(({name, id}) => ({name, id})))
     // client.user?.edit({avatar: server?.iconURL()})
     interaction_1.slashCommands.forEach((scmd) => __awaiter(void 0, void 0, void 0, function* () {
