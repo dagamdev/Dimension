@@ -26,7 +26,7 @@ const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, fu
         msg.react('938639678603681842');
     }
     if (msg.channelId == '1022914793511850084' && msg.content.startsWith('=birthday date')) {
-        msg.reply({ content: '**Aprieta a "celebrar en este servidor" para que nos notifique <a:slowdance:1053308466552373318>**' });
+        msg.reply({ content: '**Aprieta a "celebrar en este servidor" para que nos notifique <a:slowdance:1053308466552373318>**' }).then(res => setTimeout(() => res.delete(), 5 * 60 * 1000));
     }
 });
 exports.messageCreateEvent = messageCreateEvent;
