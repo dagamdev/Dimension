@@ -10,8 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.messageCreateEvent = void 0;
+const eval_1 = require("../commands/text/eval");
 const db_1 = require("../db");
 const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     if (msg.author.bot)
         return;
     const server = client.guilds.cache.get(db_1.botDB.serverId);
@@ -28,5 +30,12 @@ const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, fu
     if (msg.channelId == '1022914793511850084' && msg.content.startsWith('=birthday date')) {
         msg.reply({ content: '**Aprieta a "celebrar en este servidor" para que nos notifique <a:slowdance:1053308466552373318>**' }).then(res => setTimeout(() => res.delete(), 5 * 60 * 1000));
     }
+    const { prefix } = db_1.botDB;
+    if (msg.author.bot || !msg.content.toLowerCase().startsWith(prefix))
+        return;
+    const args = msg.content.slice(prefix.length).trim().split(/ +/g);
+    const command = (_a = args.shift()) === null || _a === void 0 ? void 0 : _a.toLowerCase();
+    if (command == 'eval')
+        (0, eval_1.evalCommand)(msg, client, args.join(' '));
 });
 exports.messageCreateEvent = messageCreateEvent;

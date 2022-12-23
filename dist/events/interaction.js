@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.interactionEvent = exports.data = exports.slashCommands = void 0;
 const discord_js_1 = require("discord.js");
 const db_1 = require("../db");
-const anuncio_1 = require("../commands/anuncio");
+const anuncio_1 = require("../commands/slash/anuncio");
 exports.slashCommands = new discord_js_1.Collection();
 exports.data = { adChannelId: '' };
 const cmds = [anuncio_1.anuncioScb];

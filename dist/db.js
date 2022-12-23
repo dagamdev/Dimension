@@ -10,6 +10,7 @@ const config_1 = require("./config");
 // dim: 869814899260424192
 exports.botDB = {
     serverId: '869814899260424192',
+    prefix: 'd!',
     color: {
         bot: "#2c889f",
         error: "#ff1010",
