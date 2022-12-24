@@ -5,7 +5,7 @@ const discord_js_1 = require("discord.js");
 const sendMessageText = (msg, optionsMessage) => {
     setTimeout(() => {
         msg.reply(optionsMessage);
-    }, 500);
+    }, 3000);
 };
 exports.sendMessageText = sendMessageText;
 const createEmbedMessage = (title, description, color) => {
@@ -19,7 +19,7 @@ const setError = (msg, description) => {
             tnt.delete().catch(() => '');
             msg.delete().catch(() => '');
         }, 20000));
-    }, 500);
+    }, 3000);
 };
 exports.setError = setError;
 const setErrors = (msg, descriptionsAndConditions) => {
