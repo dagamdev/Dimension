@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readyEvent = void 0;
 const discord_js_1 = require("discord.js");
+const config_1 = require("../config");
 const db_1 = require("../db");
 const interaction_1 = require("./interaction");
 const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
@@ -22,7 +23,7 @@ const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
         .setTitle('I am ready')
         .setDescription('Connected again')
         .setColor('Random');
-    if ((channelLog === null || channelLog === void 0 ? void 0 : channelLog.type) == discord_js_1.ChannelType.GuildText)
+    if (!config_1.inDevelopment && (channelLog === null || channelLog === void 0 ? void 0 : channelLog.type) == discord_js_1.ChannelType.GuildText)
         channelLog.send({ embeds: [ReadyEb] });
     // console.log(server?.emojis.cache.filter(f=> f.animated).map(({name, id}) => ({name, id})))
     // client.user?.edit({avatar: server?.iconURL()})

@@ -10,8 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.messageCreateEvent = void 0;
-const eval_1 = require("../commands/text/eval");
+const discord_js_1 = require("discord.js");
 const db_1 = require("../db");
+const eval_1 = require("../commands/text/eval");
+const warn_1 = require("../commands/text/warn");
+const ban_1 = require("../commands/text/ban");
 const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     if (msg.author.bot)
@@ -37,5 +40,12 @@ const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, fu
     const command = (_a = args.shift()) === null || _a === void 0 ? void 0 : _a.toLowerCase();
     if (command == 'eval')
         (0, eval_1.evalCommand)(msg, client, args.join(' '));
+    //870430667777904640
+    if (msg.channel.type == discord_js_1.ChannelType.GuildText && msg.channel.parentId == '870430667777904640') {
+        if (command == 'warn')
+            (0, warn_1.warnCommand)(msg, args, client);
+        if (command == 'ban')
+            (0, ban_1.banCommand)(msg, args, client);
+    }
 });
 exports.messageCreateEvent = messageCreateEvent;
