@@ -11,6 +11,7 @@ const config_1 = require("./config");
 exports.botDB = {
     serverId: '869814899260424192',
     prefix: 'd!',
+    channelLogId: '1053686859840102431',
     color: {
         bot: "#2c889f",
         error: "#ff1010",
