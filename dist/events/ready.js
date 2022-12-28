@@ -18,6 +18,7 @@ const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     console.log('Estoy listo ' + ((_a = client.user) === null || _a === void 0 ? void 0 : _a.username));
     const server = client.guilds.cache.get(db_1.botDB.serverId);
+    const textServer = client.guilds.cache.get(db_1.botDB.testServerId);
     const channelLog = client.channels.cache.get('1053686859840102431');
     const ReadyEb = new discord_js_1.EmbedBuilder()
         .setTitle('I am ready')
@@ -25,14 +26,14 @@ const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
         .setColor('Random');
     if (!config_1.inDevelopment && (channelLog === null || channelLog === void 0 ? void 0 : channelLog.type) == discord_js_1.ChannelType.GuildText)
         channelLog.send({ embeds: [ReadyEb] });
-    // console.log(server?.emojis.cache.filter(f=> f.animated).map(({name, id}) => ({name, id})))
-    // client.user?.edit({avatar: server?.iconURL()})
-    interaction_1.slashCommands.forEach((scmd) => __awaiter(void 0, void 0, void 0, function* () {
-        var _b;
-        if (!((_b = (yield (server === null || server === void 0 ? void 0 : server.commands.fetch()))) === null || _b === void 0 ? void 0 : _b.some(s => s.name == scmd.name))) {
-            server === null || server === void 0 ? void 0 : server.commands.create(scmd).then(c => console.log(`Comando ${c.name} creado.`));
-        }
-    }));
+    [server, textServer].forEach(sv => {
+        interaction_1.slashCommands.forEach((scmd) => __awaiter(void 0, void 0, void 0, function* () {
+            var _a;
+            if (!((_a = (yield (sv === null || sv === void 0 ? void 0 : sv.commands.fetch()))) === null || _a === void 0 ? void 0 : _a.some(s => s.name == scmd.name))) {
+                sv === null || sv === void 0 ? void 0 : sv.commands.create(scmd).then(c => console.log(`Comando ${c.name} creado en ${sv.name}.`));
+            }
+        }));
+    });
     // const command = slashCommands.get('anuncio')
     // ;(await server?.commands.fetch('1034508374219427931'))?.edit({options: command?.options}).then(c=> console.log(`Comando ${c.name} editado`))
     // console.log((await server?.commands.fetch())?.map(m=> ({id: m.id, name: m.name})))

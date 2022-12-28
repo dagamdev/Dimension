@@ -1,15 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.botDB = void 0;
-const mongoose_1 = require("mongoose");
-const config_1 = require("./config");
-(0, mongoose_1.connect)(config_1.connectorDb)
-    .then(() => console.log('Connected to database.'))
-    .catch((error) => console.log(error));
-// pr: 825191912830926898
-// dim: 869814899260424192
+// connect(connectorDb)
+// .then(()=> console.log('Connected to database.'))
+// .catch((error)=> console.log(error))
 exports.botDB = {
     serverId: '869814899260424192',
+    testServerId: '825191912830926898',
     prefix: 'd!',
     channelLogId: '1053686859840102431',
     color: {

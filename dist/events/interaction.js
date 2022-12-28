@@ -13,9 +13,10 @@ exports.interactionEvent = exports.data = exports.slashCommands = void 0;
 const discord_js_1 = require("discord.js");
 const db_1 = require("../db");
 const anuncio_1 = require("../commands/slash/anuncio");
+const priv_1 = require("../commands/slash/priv");
 exports.slashCommands = new discord_js_1.Collection();
 exports.data = { adChannelId: '' };
-const cmds = [anuncio_1.anuncioScb];
+const cmds = [anuncio_1.anuncioScb, priv_1.privScb];
 cmds.forEach(cmd => exports.slashCommands.set(cmd.name, cmd));
 const interactionEvent = (int, client) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
@@ -24,6 +25,8 @@ const interactionEvent = (int, client) => __awaiter(void 0, void 0, void 0, func
         const { commandName } = int;
         if (commandName == 'anuncio')
             (0, anuncio_1.anuncioSlashCommand)(int);
+        if (commandName == 'priv')
+            (0, priv_1.privSlashCommand)(int, client);
     }
     if (int.isModalSubmit()) {
         const { customId } = int;
