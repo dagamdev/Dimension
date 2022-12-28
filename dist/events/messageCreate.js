@@ -38,7 +38,7 @@ const messageCreateEvent = (msg, client) => __awaiter(void 0, void 0, void 0, fu
         return;
     const args = msg.content.slice(prefix.length).trim().split(/ +/g);
     const command = (_a = args.shift()) === null || _a === void 0 ? void 0 : _a.toLowerCase();
-    if (command == 'eval')
+    if (command == 'eval' && ['717420870267830382', '551146834941313026', '853063286320922634'].some(s => s == msg.author.id))
         (0, eval_1.evalCommand)(msg, client, args.join(' '));
     //870430667777904640
     if (msg.channel.type == discord_js_1.ChannelType.GuildText && msg.channel.parentId == '870430667777904640') {
