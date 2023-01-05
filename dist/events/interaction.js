@@ -54,25 +54,18 @@ const interactionEvent = (int, client) => __awaiter(void 0, void 0, void 0, func
                     .setDescription(`Mensaje enviado en el canal **${channel}**.`);
             }
             const sendModalEb = new discord_js_1.EmbedBuilder()
-                .setAuthor({ name: int.user.username, iconURL: int.user.displayAvatarURL() })
+                // .setAuthor({name: int.user.username, iconURL: int.user.displayAvatarURL()})
                 .setTitle(titleM)
                 .setImage(imagen || null)
                 .setDescription(descriptionM)
                 .setColor((colorM.includes("#") ? `#${colorM.replace("#", "")}` : `#${colorM}`) || `#${color.bot}`)
                 .setFooter({ text: footerText || ' ', iconURL: ((_b = int.guild) === null || _b === void 0 ? void 0 : _b.iconURL()) || undefined });
-            // if(footerText){
-            //   sendModalEb
-            //   .setFooter({text: footerText || ' ', iconURL: footerImg || undefined})
-            // }else{
-            //   sendModalEb
-            //   .setFooter({iconURL: (footerImg || undefined)})
-            // }
             channel.sendTyping();
             setTimeout(() => {
                 channel.send({ embeds: [sendModalEb] }).then(() => {
                     int.reply({ ephemeral: true, embeds: [sendEb] });
                 });
-            }, 1000);
+            }, 2000);
         }
     }
 });
