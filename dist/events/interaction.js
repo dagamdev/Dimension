@@ -31,8 +31,8 @@ const interactionEvent = (int, client) => __awaiter(void 0, void 0, void 0, func
     if (int.isModalSubmit()) {
         const { customId } = int;
         if (customId == 'sendEmbedModal') {
-            console.log('hola');
-            console.log(exports.data.adChannelId);
+            // console.log('hola')
+            // console.log(data.adChannelId)
             const channel = (_a = int.guild) === null || _a === void 0 ? void 0 : _a.channels.cache.get(exports.data.adChannelId);
             const titleM = int.fields.getTextInputValue("title");
             const descriptionM = int.fields.getTextInputValue("description");
@@ -62,9 +62,9 @@ const interactionEvent = (int, client) => __awaiter(void 0, void 0, void 0, func
                 .setFooter({ text: footerText || ' ', iconURL: ((_b = int.guild) === null || _b === void 0 ? void 0 : _b.iconURL()) || undefined });
             channel.sendTyping();
             setTimeout(() => {
-                channel.send({ embeds: [sendModalEb] }).then(() => {
-                    int.reply({ ephemeral: true, embeds: [sendEb] });
-                });
+                channel.send({ embeds: [sendModalEb] }).then(() => __awaiter(void 0, void 0, void 0, function* () {
+                    yield int.reply({ ephemeral: true, embeds: [sendEb] });
+                }));
             }, 2000);
         }
     }
