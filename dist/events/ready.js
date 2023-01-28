@@ -13,6 +13,7 @@ exports.readyEvent = void 0;
 const discord_js_1 = require("discord.js");
 const config_1 = require("../config");
 const db_1 = require("../db");
+const utils_1 = require("../utils");
 const interaction_1 = require("./interaction");
 const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -26,6 +27,12 @@ const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
         .setColor('Random');
     if (!config_1.inDevelopment && (channelLog === null || channelLog === void 0 ? void 0 : channelLog.type) == discord_js_1.ChannelType.GuildText)
         channelLog.send({ embeds: [ReadyEb] });
+    // console.log(server?.emojis.cache.filter(f=> f.animated).map(({name, id}) => ({name, id})))
+    // client.user?.edit({avatar: server?.iconURL()})
+    (0, utils_1.setActivity)(client.user);
+    setInterval(() => {
+        (0, utils_1.setActivity)(client.user);
+    }, 60 * 60000);
     [server, textServer].forEach(sv => {
         interaction_1.slashCommands.forEach((scmd) => __awaiter(void 0, void 0, void 0, function* () {
             var _a;

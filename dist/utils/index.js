@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setSlashErrors = exports.setSlashError = exports.setErrors = exports.setError = exports.createEmbedMessage = exports.sendMessageSlash = exports.sendMessageText = void 0;
+exports.setActivity = exports.setSlashErrors = exports.setSlashError = exports.setErrors = exports.setError = exports.createEmbedMessage = exports.sendMessageSlash = exports.sendMessageText = void 0;
 const discord_js_1 = require("discord.js");
 const sendMessageText = (msg, optionsMessage) => {
     setTimeout(() => {
@@ -68,3 +68,18 @@ const setSlashErrors = (int, descriptionsAndConditions) => {
     return res;
 };
 exports.setSlashErrors = setSlashErrors;
+const setActivity = (bot) => {
+    const actyvityes = [
+        {
+            name: "mi ig norkalu_ok",
+            type: discord_js_1.ActivityType.Watching
+        },
+        {
+            name: "a David200409#8662",
+            type: discord_js_1.ActivityType.Watching
+        }
+    ];
+    const activity = actyvityes[Math.floor(Math.random() * actyvityes.length)];
+    bot === null || bot === void 0 ? void 0 : bot.setPresence({ activities: [activity] });
+};
+exports.setActivity = setActivity;
