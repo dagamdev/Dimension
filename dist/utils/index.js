@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setActivity = exports.setSlashErrors = exports.setSlashError = exports.setErrors = exports.setError = exports.createEmbedMessage = exports.sendMessageSlash = exports.sendMessageText = void 0;
 const discord_js_1 = require("discord.js");
+const db_1 = require("../db");
 const sendMessageText = (msg, optionsMessage) => {
     setTimeout(() => {
         msg.reply(optionsMessage);
@@ -68,18 +69,26 @@ const setSlashErrors = (int, descriptionsAndConditions) => {
     return res;
 };
 exports.setSlashErrors = setSlashErrors;
-const setActivity = (bot) => {
+const setActivity = (client, index) => {
+    var _a;
+    const server = client.guilds.cache.get(db_1.botDB.serverId);
+    const creator = client.users.cache.get('717420870267830382');
     const actyvityes = [
         {
             name: "mi ig norkalu_ok",
             type: discord_js_1.ActivityType.Watching
         },
         {
-            name: "a David200409#8662",
+            name: `a ${creator === null || creator === void 0 ? void 0 : creator.tag}`,
+            type: discord_js_1.ActivityType.Watching
+        },
+        {
+            name: `${server === null || server === void 0 ? void 0 : server.memberCount.toLocaleString()} miembros.`,
             type: discord_js_1.ActivityType.Watching
         }
     ];
-    const activity = actyvityes[Math.floor(Math.random() * actyvityes.length)];
-    bot === null || bot === void 0 ? void 0 : bot.setPresence({ activities: [activity] });
+    const activity = actyvityes[index];
+    (_a = client.user) === null || _a === void 0 ? void 0 : _a.setPresence({ activities: [activity] });
+    return index >= actyvityes.length - 1 ? 0 : index + 1;
 };
 exports.setActivity = setActivity;

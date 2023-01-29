@@ -29,10 +29,11 @@ const readyEvent = (client) => __awaiter(void 0, void 0, void 0, function* () {
         channelLog.send({ embeds: [ReadyEb] });
     // console.log(server?.emojis.cache.filter(f=> f.animated).map(({name, id}) => ({name, id})))
     // client.user?.edit({avatar: server?.iconURL()})
-    (0, utils_1.setActivity)(client.user);
+    let counter = 0;
+    counter = (0, utils_1.setActivity)(client, counter);
     setInterval(() => {
-        (0, utils_1.setActivity)(client.user);
-    }, 60 * 60000);
+        counter = (0, utils_1.setActivity)(client, counter);
+    }, 10 * 60000);
     [server, textServer].forEach(sv => {
         interaction_1.slashCommands.forEach((scmd) => __awaiter(void 0, void 0, void 0, function* () {
             var _a;
